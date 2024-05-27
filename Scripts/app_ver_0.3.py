@@ -149,8 +149,10 @@ async def get_partcouter_value_for_machine(session, machine, earlier_time_str, c
     if partcounter_id:
         signals = await GetSignals(session, machine["machineId"], earlier_time_str, current_time_str)
         for signal in signals:
-            if signal["paramInMachineId"] == partcounter_id:
-                partcounter = signal["sum"]
+            print(signal)
+            try:
+                if signal["paramInMachineId"] == partcounter_id:
+                    partcounter = signal["sum"]
     machine["actual_partcounter"] = partcounter
     return machine
 
